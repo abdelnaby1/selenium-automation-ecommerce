@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Validate methods">
+    <test name="Ecommerce - GUI">
+        <classes>
+
+            <class name="tests.WishlistTests">
+            </class>
+        </classes>
+    </test>
+</suite> <!-- Automation Practice -->

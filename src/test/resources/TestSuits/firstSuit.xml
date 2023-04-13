@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Practice">
+    <!--    <listeners>-->
+    <!--        <listener class-name="utils.TestngListener"/>-->
+    <!--    </listeners>-->
+<!--    <parameter name="browser" value="chrome"/>-->
+    <test name="Ecommerce - GUI">
+        <classes>
+            <class name="tests.UserRegistrationTests">
+            </class>
+            <class name="tests.MyAccountTests">
+            </class>
+            <class name="tests.ContactUsTests">
+            </class>
+            <class name="tests.ProductSearchTests">
+            </class>
+            <class name="tests.EmailAFriendTests">
+            </class>
+            <class name="tests.ChangeCurrencyTests">
+            </class>
+            <class name="tests.AddProductReviewTests">
+            </class>
+            <class name="tests.HoverMenuTests">
+            </class>
+            <class name="tests.WishlistTests">
+            </class>
+        </classes>
+    </test>
+
+
+
+</suite> <!-- Automation Practice -->
