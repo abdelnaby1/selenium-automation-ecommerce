@@ -4,6 +4,7 @@
 /.allure/
 target/
 /ExtentReports.html
+*.html
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
