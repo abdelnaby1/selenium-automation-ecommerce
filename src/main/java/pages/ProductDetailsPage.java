@@ -14,6 +14,10 @@ public class ProductDetailsPage {
     private By addToWishlistBtn = By.id("add-to-wishlist-button-5");
     private By toastMessage = By.xpath("//p[text()='The product has been added to your ']");
     private  By wishlistLink = By.xpath("//a[text()='wishlist']");
+
+    private By addToCompareBtn = By.xpath("//div[contains(@class,'compare-products')]//button[text()='Add to compare list']");
+
+    private By toastMsg = By.cssSelector(".bar-notification .content");
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
         eleActions = new ElementActions(driver);
@@ -57,5 +61,13 @@ public class ProductDetailsPage {
             eleActions.click(wishlistLink);
         }
         return new WishlistPage(driver,getProductName());
+    }
+    public ProductDetailsPage addProductToCompare(){
+        eleActions.click(addToCompareBtn);
+        return this;
+    }
+
+    public String getToastMessage() {
+        return eleActions.getText(toastMessage);
     }
 }

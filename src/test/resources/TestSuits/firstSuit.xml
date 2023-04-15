@@ -25,6 +25,8 @@
             </class>
             <class name="tests.WishlistTests">
             </class>
+            <class name="tests.AddProductToCompareTests">
+            </class>
         </classes>
     </test>
 
