@@ -16,6 +16,7 @@ public class HomePage {
 
     private  final  By contactUsLink = By.linkText("Contact us");
     private final By currencySelect = By.id("customerCurrency");
+    private final By cartLink = By.cssSelector("a.ico-cart");
 
 
     public HomePage(WebDriver driver) {
@@ -49,6 +50,10 @@ public class HomePage {
     public SubCategoryPage clickOnMenu(String category,String subcategory){
         eleActions.mouseHover(By.linkText(category)).click(By.linkText(subcategory));
         return new SubCategoryPage(driver,subcategory);
+    }
+    public CartPage openCart(){
+        eleActions.click(cartLink);
+        return new CartPage(driver);
     }
     public static Boolean  isLoginLinkDisplayed(){
         return eleActions.isElementDisplayed(loginLink);

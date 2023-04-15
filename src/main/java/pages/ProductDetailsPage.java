@@ -18,6 +18,7 @@ public class ProductDetailsPage {
     private By addToCompareBtn = By.xpath("//div[contains(@class,'compare-products')]//button[text()='Add to compare list']");
 
     private By toastMsg = By.cssSelector(".bar-notification .content");
+    private By addToCartBtn = By.xpath("//div[@class='add-to-cart']//button[text()='Add to cart']");
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
         eleActions = new ElementActions(driver);
@@ -69,5 +70,9 @@ public class ProductDetailsPage {
 
     public String getToastMessage() {
         return eleActions.getText(toastMessage);
+    }
+    public ProductDetailsPage addProductToCart(){
+        eleActions.click(addToCartBtn);
+        return this;
     }
 }
