@@ -13,6 +13,8 @@ public class CartPage {
     private By removeProductBtn = By.cssSelector(".remove-btn");
     private By noDataText = By.cssSelector(".no-data");
 
+    private By termsAndConditionsBtn = By.id("termsofservice");
+    private By checkoutBtn = By.id("checkout");
     public CartPage(WebDriver driver) {
         this.driver = driver;
         eleActions = new ElementActions(driver);
@@ -39,5 +41,10 @@ public class CartPage {
     }
     public String getNoDataText() {
         return eleActions.getText(noDataText);
+    }
+    public CheckoutPage checkout(){
+        eleActions.click(termsAndConditionsBtn)
+                .click(checkoutBtn);
+        return new CheckoutPage(driver);
     }
 }

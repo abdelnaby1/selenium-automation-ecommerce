@@ -34,7 +34,6 @@ public class UserRegistrationTests {
     {
         date = new Date();
         email = "test" + date.getTime() + "@test.com";
-        System.out.println(email);
         driver = BrowserFactory.getBrowser();
         BrowserActions.navigateToUrl(driver,"https://demo.nopcommerce.com/");
         BrowserActions.maximizeWindow(driver);

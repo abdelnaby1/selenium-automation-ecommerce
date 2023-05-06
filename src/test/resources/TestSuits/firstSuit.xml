@@ -27,6 +27,8 @@
             </class>
             <class name="tests.AddProductToCompareTests">
             </class>
+            <class name="tests.CheckoutTests">
+            </class>
         </classes>
     </test>
 
