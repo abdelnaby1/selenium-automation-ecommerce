@@ -1,1 +1,1 @@
-# selnium-automation-ecommerce
+# selenium-automation-ecommerce
