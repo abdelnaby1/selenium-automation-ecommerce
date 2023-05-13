@@ -44,4 +44,15 @@ public class Helper {
     public static String getRandomNumberBetweenTwoValuesAsString(int lowValue, int highValue) {
         return Integer.toString(getRandomNumberBetweenTwoValues(lowValue, highValue));
     }
+    //ORDER NUMBER: 1031
+    public static String extractOrderNumber(String text) {
+        String[] arrOfStr = text.split(" ", 3);
+        String number = "";
+        try{
+            number =arrOfStr[2];
+
+        } catch(NumberFormatException ex){ // handle your exception
+        }
+        return number;
+    }
 }

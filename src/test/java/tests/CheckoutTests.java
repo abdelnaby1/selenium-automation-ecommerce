@@ -4,15 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.CartPage;
-import pages.HomePage;
-import pages.SearchPage;
+import pages.*;
 import utils.BrowserActions;
 import utils.BrowserFactory;
 
 import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static utils.Helper.extractOrderNumber;
 
 public class CheckoutTests {
     Date date;
@@ -57,14 +57,24 @@ public class CheckoutTests {
                 .getTitle();
         assertEquals(title,"Your order has been successfully processed!","thr order should be created");
 
+    }
+
+    @Test(dependsOnMethods = "testCheckout")
+    public void testOrderDetails(){
+        String orderNumberText =
+                new CheckoutPage(driver)
+                        .getOrderNumber();
+        String orderNumber = extractOrderNumber(orderNumberText);
+        new CheckoutPage(driver).openOrderDetails();
+        assertTrue(driver.getCurrentUrl().contains("orderdetails/"+orderNumber));
+        new OrderDetailsPage(driver).downloadPDFOrderInvoice();
 
     }
 
 
-
     @AfterClass
     public void closeBrowser() {
-        BrowserActions.closeAllOpenedBrowserWindows(driver);
+//        BrowserActions.closeAllOpenedBrowserWindows(driver);
 
     }
 }

@@ -21,6 +21,7 @@ public class CheckoutPage {
     private By title = By.cssSelector(".section.order-completed .title strong");
     private By orderNumber = By.cssSelector(".order-number strong");
     private By continueBtnAfterOrderCompleted = By.id("button-1 order-completed-continue-button");
+    private By orderDetailsBtn = By.cssSelector(".details-link a");
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
         eleActions = new ElementActions(driver);
@@ -64,5 +65,9 @@ public class CheckoutPage {
     public HomePage continueBtnAfterOrderCompleted() {
         eleActions.click(continueBtnAfterOrderCompleted);
         return new HomePage(driver);
+    }
+    public OrderDetailsPage openOrderDetails(){
+        eleActions.click(orderDetailsBtn);
+        return new OrderDetailsPage(driver);
     }
 }

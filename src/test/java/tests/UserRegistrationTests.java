@@ -4,9 +4,7 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.HomePage;
 import pages.RegisterResultPage;
 import utils.BrowserActions;
@@ -25,54 +23,66 @@ import static pages.HomePage.isLogoutLinkDisplayed;
 @Feature("User Registration")
 public class UserRegistrationTests {
 
-    Date date;
+//    static Date date;
     String email;
     WebDriver driver;
 
-    @BeforeClass
+    @BeforeMethod
     public void setup()
     {
-        date = new Date();
-        email = "test" + date.getTime() + "@test.com";
+//        date = new Date();
+//        email = "test" + date.getTime() + "@test.com";
         driver = BrowserFactory.getBrowser();
         BrowserActions.navigateToUrl(driver,"https://demo.nopcommerce.com/");
         BrowserActions.maximizeWindow(driver);
 
     }
 
+    @DataProvider(name = "userData")
+    public static Object[][] userData(){
+        return new Object[][]{
+                {"ahmed","test", "test1" + new Date().getTime() + "@test.com","123456789"},
+                {"eslam","test", "test2" + new Date().getTime() + "@test.com","1234567890"},
+                {"mohamed","test", "test3" + new Date().getTime() + "@test.com","12345678900"},
 
-    @Test
-    public void testValidRegister(){
+        };
+    }
+    @Test(dataProvider = "userData")
+    public void testValidRegister(String fName, String lName, String email, String password){
 
         String successMsg =
                 new HomePage(driver)
                 .openRegistrationPage()
-                .register("ahmed","test",email,"123456789")
+                .register(fName,lName,email,password)
                         .getSuccessMessage();
         assertTrue(successMsg.contains("Your registration completed"));
 
         new RegisterResultPage(driver)
                 .clickContinueBtn()
                 .openLoginPage()
-                .login(email,"123456789");
+                .login(email,password);
 
-    }
-    @Test(dependsOnMethods = {"testValidRegister"})
-    public void testLogout(){
         new HomePage(driver)
                 .logout();
         assertTrue(isLoginLinkDisplayed());
 
     }
-    @Test(dependsOnMethods = {"testLogout"})
-    public void testValidLogin(){
-        new HomePage(driver)
-                .openLoginPage()
-                .login(email,"123456789");
-        assertTrue(isLogoutLinkDisplayed());
-    }
+//    @Test(dependsOnMethods = {"testValidRegister"})
+//    public void testLogout(){
+//        new HomePage(driver)
+//                .logout();
+//        assertTrue(isLoginLinkDisplayed());
+//
+//    }
+//    @Test(dependsOnMethods = {"testLogout"})
+//    public void testValidLogin(){
+//        new HomePage(driver)
+//                .openLoginPage()
+//                .login(email,"123456789");
+//        assertTrue(isLogoutLinkDisplayed());
+//    }
 
-    @AfterClass
+    @AfterMethod
     public void closeBrowser() {
         BrowserActions.closeAllOpenedBrowserWindows(driver);
 

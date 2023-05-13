@@ -4,8 +4,9 @@
     <test name="Ecommerce - GUI">
         <classes>
 
-            <class name="tests.CheckoutTests">
+            <class name="tests.RegistrationWithDDTPropertyFilesTests">
             </class>
         </classes>
     </test>
 </suite> <!-- Automation Practice -->
+<!--        mvn clean test -PtestMethods && allure serve target/allure-results-->

@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestContext;
@@ -15,6 +17,7 @@ import org.testng.Reporter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 import static org.testng.Assert.fail;
 
@@ -184,7 +187,16 @@ public class BrowserFactory {
         return driver.get();
     }
     private static ChromeOptions getChromeOptions() {
+        String downloadFilepath = System.getProperty("user.dir") + "/downloads";
+        Logger.logMessage(downloadFilepath);
+        Logger.logStep(downloadFilepath);
+        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+        chromePrefs.put("profile.default_content_settings.popups", 0);
+        chromePrefs.put("download.default_directory", downloadFilepath);
         ChromeOptions chOptions = new ChromeOptions();
+        chOptions.setExperimentalOption("prefs", chromePrefs);
+        chOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+        chOptions.setCapability(ChromeOptions.CAPABILITY, chOptions);
         chOptions.addArguments("--headless");
 //        chOptions.setHeadless(true);
         chOptions.addArguments("--window-size=1920,1080");
@@ -197,12 +209,31 @@ public class BrowserFactory {
 //	chOptions.addArguments("--ignore-certificate-errors");
         return chOptions;
     }
+    private static ChromeOptions getChromeOptions2() {
+        String downloadFilepath = System.getProperty("user.dir") + "/downloads";
+        Logger.logMessage(downloadFilepath);
+        Logger.logStep(downloadFilepath);
+        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+        chromePrefs.put("profile.default_content_settings.popups", 0);
+        chromePrefs.put("download.default_directory", downloadFilepath);
+        ChromeOptions chOptions = new ChromeOptions();
+        chOptions.setExperimentalOption("prefs", chromePrefs);
+        chOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+        chOptions.setCapability(ChromeOptions.CAPABILITY, chOptions);
+
+        return chOptions;
+    }
     private static FirefoxOptions getFirefoxOptions() {
         FirefoxOptions ffOptions = new FirefoxOptions();
         ffOptions.addArguments("--headless=new");
 //        ffOptions.setHeadless(true);
         ffOptions.addArguments("--window-size=1920,1080");
 
+        return ffOptions;
+    }
+    private static FirefoxOptions getFirefoxOptions2() {
+        FirefoxOptions ffOptions = new FirefoxOptions();
+        //change firefox default downloads folder
         return ffOptions;
     }
 
