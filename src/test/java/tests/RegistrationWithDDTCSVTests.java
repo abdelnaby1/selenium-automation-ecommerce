@@ -13,7 +13,6 @@ import pages.RegisterResultPage;
 import utils.BrowserActions;
 import utils.BrowserFactory;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
