@@ -4,7 +4,7 @@
     <test name="Ecommerce - GUI">
         <classes>
 
-            <class name="tests.RegistrationWithDDTExclTests">
+            <class name="tests.RegistrationWithDDTCSVTests">
             </class>
         </classes>
     </test>
