@@ -3,7 +3,6 @@
 <suite name="Validate methods">
     <test name="Ecommerce - GUI">
         <classes>
-
             <class name="tests.RegistrationWithDDTJSONTests">
             </class>
         </classes>
